@@ -5,6 +5,7 @@
     "author": "Brandon Canaday",
     "private": true,
     "scripts": {
+        "prepare": "is-ci || husky install",
         "lint": "docker build --progress=plain --target lint . -t $npm_package_name-lint --build-arg PROJECT_NAME=$npm_package_name",
         "test": "docker build --progress=plain --target test . -t $npm_package_name-test --build-arg PROJECT_NAME=$npm_package_name",
         "build": "docker build --progress=plain --target build . -t $npm_package_name-build --build-arg PROJECT_NAME=$npm_package_name",
@@ -14,7 +15,7 @@
         "start-local:stop": "docker stop $npm_package_name || true && docker rm $npm_package_name || true",
         "start-local:run": "docker run --name $npm_package_name -p 3000:3000 -v $(pwd):/projects/$npm_package_name $npm_package_name-start-local",
         "start-local": "run-s start-local:build start-local:stop start-local:run",
-        "cm": "cz",
+        "commit": "cz",
         "release": "semantic-release --no-verify",
         "docker:lint-es": "eslint --ext .js,.jsx,.ts,.tsx --format=pretty .",
         "docker:lint-md": "markdownlint '**/*.md'",
@@ -22,19 +23,6 @@
         "docker:test": "DISABLE_ESLINT_PLUGIN=true env-cmd -f .env.js react-scripts test --watchAll=false --ci --coverage --silent --passWithNoTests",
         "docker:build": "DISABLE_ESLINT_PLUGIN=true BUILD_PATH='./dist' react-scripts build && mv dist/index.html dist/index.ejs",
         "docker:start-local": "DISABLE_ESLINT_PLUGIN=true env-cmd -f .env.js react-scripts start"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged",
-            "prepare-commit-msg": "exec < /dev/tty && git-cz --hook || true",
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-            "pre-push": "yarn run validate"
-        }
-    },
-    "config": {
-        "commitizen": {
-            "path": "cz-conventional-changelog"
-        }
     },
     "browserslist": {
         "production": [
@@ -88,7 +76,8 @@
         "eslint-plugin-react": "^7.26.1",
         "eslint-plugin-react-hooks": "^4.2.0",
         "eslint-plugin-unicorn": "^34.0.1",
-        "husky": "^6.0.0",
+        "husky": "^7.0.4",
+        "is-ci": "^3.0.1",
         "lint-staged": "^11.0.0",
         "markdownlint-cli": "^0.27.1",
         "npm-run-all": "^4.1.5",

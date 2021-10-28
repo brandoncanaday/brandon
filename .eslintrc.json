@@ -6,6 +6,7 @@
         "sourceType": "module",
         "project": "./tsconfig.json"
     },
+    "ignorePatterns": [".eslintrc.json", "package.json"],
     "plugins": [
         "@typescript-eslint",
         "eslint-comments",
