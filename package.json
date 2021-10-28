@@ -14,7 +14,7 @@
         "start-local:stop": "docker stop $npm_package_name || true && docker rm $npm_package_name || true",
         "start-local:run": "docker run --name $npm_package_name -p 3000:3000 -v $(pwd):/projects/$npm_package_name $npm_package_name-start-local",
         "start-local": "run-s start-local:build start-local:stop start-local:run",
-        "commit": "cz",
+        "cm": "cz",
         "release": "semantic-release --no-verify",
         "docker:lint-es": "eslint --ext .js,.jsx,.ts,.tsx --format=pretty .",
         "docker:lint-md": "markdownlint '**/*.md'",
