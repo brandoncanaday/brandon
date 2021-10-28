@@ -6,6 +6,8 @@
     "private": true,
     "scripts": {
         "prepare": "is-ci || husky install",
+        "commit": "cz",
+        "release": "semantic-release --no-verify",
         "lint": "docker build --progress=plain --target lint . -t $npm_package_name-lint --build-arg PROJECT_NAME=$npm_package_name",
         "test": "docker build --progress=plain --target test . -t $npm_package_name-test --build-arg PROJECT_NAME=$npm_package_name",
         "build": "docker build --progress=plain --target build . -t $npm_package_name-build --build-arg PROJECT_NAME=$npm_package_name",
@@ -15,7 +17,6 @@
         "start-local:stop": "docker stop $npm_package_name || true && docker rm $npm_package_name || true",
         "start-local:run": "docker run --name $npm_package_name -p 3000:3000 -v $(pwd):/projects/$npm_package_name $npm_package_name-start-local",
         "start-local": "run-s start-local:build start-local:stop start-local:run",
-        "release": "semantic-release --no-verify",
         "docker:lint-es": "eslint --ext .js,.jsx,.ts,.tsx --format=pretty .",
         "docker:lint-md": "markdownlint '**/*.md'",
         "docker:lint": "run-s docker:lint-es docker:lint-md",
