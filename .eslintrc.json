@@ -1,0 +1,85 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "eslint-comments",
+        "jest",
+        "promise",
+        "unicorn"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "airbnb-typescript",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:eslint-comments/recommended",
+        "plugin:jest/recommended",
+        "plugin:promise/recommended",
+        "plugin:unicorn/recommended",
+        "prettier"
+    ],
+    "env": {
+        "node": true,
+        "browser": true,
+        "jest": true,
+        "es2021": true
+    },
+    "rules": {
+        // Too restrictive, writing ugly code to defend against a very unlikely scenario: https://eslint.org/docs/rules/no-prototype-builtins
+        "no-prototype-builtins": "off",
+        // https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html
+        "import/prefer-default-export": "off",
+        // Too restrictive: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
+        "react/destructuring-assignment": "off",
+        // No jsx extension: https://github.com/facebook/create-react-app/issues/87#issuecomment-234627904
+        "react/jsx-filename-extension": "off",
+        // Use function hoisting to improve code readability
+        "no-use-before-define": "off",
+        // Allow most functions to rely on type inference. If the function is exported, then `@typescript-eslint/explicit-module-boundary-types` will ensure it's typed.
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-use-before-define": [
+            "error",
+            {
+                "typedefs": false,
+                "functions": false,
+                "classes": true,
+                "variables": true
+            }
+        ],
+        "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/lines-between-class-members": "off",
+        // Common abbreviations are known and readable
+        "unicorn/prevent-abbreviations": "off",
+        // Airbnb prefers forEach
+        "unicorn/no-array-for-each": "off",
+        // unusual syntax
+        "unicorn/prefer-node-protocol": "off",
+        // need '__filename' variable for logging
+        "unicorn/prefer-module": "off",
+        // It's not accurate in the monorepo style
+        "import/no-extraneous-dependencies": "off",
+        // for react project
+        "unicorn/filename-case": "off",
+        // for react project
+        "import/no-default-export": "off",
+        // frontend apps need console.log debugging
+        "no-console": "off"
+    },
+    "overrides": [
+        {
+            "files": ["*.js"],
+            "rules": {
+                // Allow `require()`
+                "@typescript-eslint/no-var-requires": "off"
+            }
+        }
+    ]
+}

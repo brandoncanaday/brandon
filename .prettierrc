@@ -1,0 +1,13 @@
+{
+    "printWidth": 80,
+    "tabWidth": 4,
+    "singleQuote": true,
+    "arrowParens": "always",
+    "trailingComma": "es5",
+    "overrides": [
+        {
+            "files": ".editorconfig",
+            "options": { "parser": "yaml" }
+        }
+    ]
+}
