@@ -32,6 +32,7 @@ jobs:
               run: yarn run lint
     build:
         runs-on: ubuntu-latest
+        needs: lint
         steps:
             - name: Checkout Code
               uses: actions/checkout@v2
@@ -56,6 +57,7 @@ jobs:
                   path: dist
     test:
         runs-on: ubuntu-latest
+        needs: build
         steps:
             - name: Checkout Code
               uses: actions/checkout@v2
@@ -93,6 +95,7 @@ jobs:
                   path: code-coverage-results.md
     release:
         runs-on: ubuntu-latest
+        needs: test
         steps:
             - name: Checkout Code
               uses: actions/checkout@v2

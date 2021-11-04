@@ -18,7 +18,6 @@ COPY .markdownlintignore ./
 COPY .eslintignore ./
 COPY .eslintrc.json ./
 COPY .env ./
-COPY .env.js ./
 COPY tsconfig.json ./
 COPY package.json ./
 COPY yarn.lock ./
@@ -79,6 +78,7 @@ ARG PROJECT_NAME
 ENV PROJECT_HOME /projects/${PROJECT_NAME}
 WORKDIR ${PROJECT_HOME}
 
+COPY .env.js ./
 COPY --from=base ${PROJECT_HOME}/public ./public
 COPY --from=base ${PROJECT_HOME}/src ./src
 
@@ -101,6 +101,7 @@ ARG PROJECT_NAME
 ENV PROJECT_HOME /projects/${PROJECT_NAME}
 WORKDIR ${PROJECT_HOME}
 
+COPY .env.js ./
 COPY --from=base ${PROJECT_HOME}/public ./public
 COPY --from=base ${PROJECT_HOME}/src ./src
 
@@ -126,6 +127,7 @@ ARG PROJECT_NAME
 ENV PROJECT_HOME /projects/${PROJECT_NAME}
 WORKDIR ${PROJECT_HOME}
 
+COPY .env.js ./
 COPY --from=base ${PROJECT_HOME}/public ./public
 COPY --from=base ${PROJECT_HOME}/src ./src
 
