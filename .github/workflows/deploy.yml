@@ -1,0 +1,28 @@
+name: CD
+
+on:
+    workflow_run:
+        workflows: ['CI']
+        branches: [master]
+        types:
+            - completed
+
+env:
+    DEPLOY_URL_PROD: https://me.nodnarb.dev
+
+jobs:
+    deploy-production:
+        runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        concurrency:
+            group: CD-production
+            cancel-in-progress: true
+        environment:
+            name: production
+            url: ${{ env.DEPLOY_URL_PROD }}
+        steps:
+            - name: Download artifact
+              uses: dawidd6/action-download-artifact@v2
+              with:
+                  workflow: build.yml
+                  name: dist

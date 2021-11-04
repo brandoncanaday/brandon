@@ -1,7 +1,5 @@
 {
-    "branches": [
-        "master"
-    ],
+    "branches": ["master"],
     "plugins": [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
@@ -15,12 +13,19 @@
         [
             "@semantic-release/git",
             {
-                "assets": [
-                    "CHANGELOG.md",
-                    "package.json",
-                    "yarn.lock"
-                ],
+                "assets": ["CHANGELOG.md", "package.json", "yarn.lock"],
                 "message": "chore(release): <%= nextRelease.version %> - <%= new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }) %> [skip ci]\n\n<%= nextRelease.notes %>"
+            }
+        ],
+        [
+            "@semantic-release/github",
+            {
+                "assets": [
+                    {
+                        "path": "dist",
+                        "label": "Configurable EJS React app bundle"
+                    }
+                ]
             }
         ]
     ]

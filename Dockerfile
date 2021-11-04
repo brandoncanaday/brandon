@@ -49,19 +49,6 @@ COPY --from=base ${PROJECT_HOME}/src ./src
 
 RUN yarn run docker:lint
 
-# test app
-
-FROM packager AS test
-
-ARG PROJECT_NAME
-ENV PROJECT_HOME /projects/${PROJECT_NAME}
-WORKDIR ${PROJECT_HOME}
-
-COPY --from=base ${PROJECT_HOME}/public ./public
-COPY --from=base ${PROJECT_HOME}/src ./src
-
-RUN yarn run docker:test
-
 # build app
 
 FROM packager AS build
@@ -75,6 +62,37 @@ COPY --from=base ${PROJECT_HOME}/src ./src
 
 RUN yarn run docker:build
 
+# export build output
+
+FROM scratch AS build-output
+
+ARG PROJECT_NAME
+ENV PROJECT_HOME /projects/${PROJECT_NAME}
+
+COPY --from=build ${PROJECT_HOME}/dist/ /dist/
+
+# test app
+
+FROM packager AS test
+
+ARG PROJECT_NAME
+ENV PROJECT_HOME /projects/${PROJECT_NAME}
+WORKDIR ${PROJECT_HOME}
+
+COPY --from=base ${PROJECT_HOME}/public ./public
+COPY --from=base ${PROJECT_HOME}/src ./src
+
+RUN yarn run docker:test
+
+# export test output
+
+FROM scratch as test-output
+
+ARG PROJECT_NAME
+ENV PROJECT_HOME /projects/${PROJECT_NAME}
+
+COPY --from=test ${PROJECT_HOME}/coverage/ /coverage/
+
 # validate app
 
 FROM packager AS validate
@@ -87,8 +105,18 @@ COPY --from=base ${PROJECT_HOME}/public ./public
 COPY --from=base ${PROJECT_HOME}/src ./src
 
 RUN yarn run docker:lint \
-    && yarn run docker:test \
-    && yarn run docker:build
+    && yarn run docker:build \
+    && yarn run docker:test
+
+# export validate output
+
+FROM scratch as validate-output
+
+ARG PROJECT_NAME
+ENV PROJECT_HOME /projects/${PROJECT_NAME}
+
+COPY --from=validate ${PROJECT_HOME}/dist/ /dist/
+COPY --from=validate ${PROJECT_HOME}/coverage/ /coverage/
 
 # serve app and watch files
 
@@ -104,13 +132,3 @@ COPY --from=base ${PROJECT_HOME}/src ./src
 EXPOSE 3000
 
 ENTRYPOINT ["yarn", "docker:start-local"]
-
-# final lean image
-
-FROM ubuntu:20.04 AS build-lean
-
-ARG PROJECT_NAME
-ENV PROJECT_HOME /projects/${PROJECT_NAME}
-WORKDIR ${PROJECT_HOME}
-
-COPY --from=build ${PROJECT_HOME}/dist ./dist
