@@ -10,7 +10,7 @@
 !.markdownlint.yaml
 !.markdownlintignore
 !.env
-!.env.js
+!config.js
 !**/*.md
 
 node_modules/**/*.md

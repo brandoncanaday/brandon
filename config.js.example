@@ -1,0 +1,20 @@
+# Note:
+#
+# The values of the typed variables in this file will be set using secrets
+# prefixed with "APP_SECRET_*" that are pulled in as environment variables
+# during the pipeline run.
+#
+# The secret "APP_SECRET_PUBLIC_URL" will be used as the value for React's
+# PUBLIC_URL variable. Secrets prefixed with "APP_SECRET_REACT_APP_ENV_*" will
+# be put inside the REACT_APP_ENV object where they will be accessible in the app
+# via window.env.<var-without-prefix>.
+#
+# E.g. A secret named "APP_SECRET_REACT_APP_ENV_APP_TITLE" would be accessible
+# in the app via window.env.APP_TITLE.
+
+module.exports = {
+    PUBLIC_URL: <string>,
+    REACT_APP_ENV: JSON.stringify({
+        APP_TITLE: <string>,
+    }),
+};
