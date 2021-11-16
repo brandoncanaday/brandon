@@ -23,8 +23,8 @@
         "docker:lint-md": "markdownlint '**/*.md'",
         "docker:lint": "run-s docker:lint-es docker:lint-md",
         "docker:build": "DISABLE_ESLINT_PLUGIN=true BUILD_PATH='./dist' react-scripts build && mv dist/index.html dist/index.ejs",
-        "docker:test": "DISABLE_ESLINT_PLUGIN=true env-cmd -f config.js react-scripts test --watchAll=false --ci --coverage --silent --passWithNoTests",
-        "docker:start-local": "DISABLE_ESLINT_PLUGIN=true env-cmd -f config.js react-scripts start"
+        "docker:test": "DISABLE_ESLINT_PLUGIN=true react-scripts test --watchAll=false --ci --coverage --silent --passWithNoTests",
+        "docker:start-local": "DISABLE_ESLINT_PLUGIN=true APP_SECRET_PUBLIC_URL=/ APP_SECRET_REACT_APP_ENV_APP_TITLE=Brandon env-cmd -f config.js react-scripts start"
     },
     "dependencies": {
         "react": "^17.0.2",
