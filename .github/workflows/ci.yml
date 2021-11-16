@@ -50,11 +50,13 @@ jobs:
               run: yarn
             - name: Build App
               run: yarn run build:output
+            - name: Compress Build Artifact
+              run: tar -zcvf dist.tar.gz dist
             - name: Upload Build Artifact
               uses: actions/upload-artifact@v2
               with:
-                  name: dist
-                  path: dist
+                  name: dist.tar.gz
+                  path: dist.tar.gz
     test:
         runs-on: ubuntu-latest
         needs: build
@@ -75,11 +77,13 @@ jobs:
               run: yarn
             - name: Test App
               run: yarn run test:output
+            - name: Compress Test Artifact
+              run: tar -zcvf coverage.tar.gz coverage
             - name: Upload Test Artifact
               uses: actions/upload-artifact@v2
               with:
-                  name: coverage
-                  path: coverage
+                  name: coverage.tar.gz
+                  path: coverage.tar.gz
             - name: Generate Code Coverage Summary Report
               uses: irongut/CodeCoverageSummary@v1.0.2
               with:
@@ -111,9 +115,7 @@ jobs:
             - name: Download Build Artifact
               uses: actions/download-artifact@v2
               with:
-                  name: dist
-                  path: dist
-            - name: Print current directory contents
-              run: ls -al
+                  name: dist.tar.gz
+                  path: dist.tar.gz
             - name: Create Semantic GitHub Release
               run: yarn run release

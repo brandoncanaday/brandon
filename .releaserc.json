@@ -22,7 +22,7 @@
             {
                 "assets": [
                     {
-                        "path": "dist",
+                        "path": "dist.tar.gz",
                         "label": "React app build output. The index.ejs file must still be compiled with an environment configuration before deployment."
                     }
                 ]
