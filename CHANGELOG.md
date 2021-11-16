@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/brandoncanaday/brandon/compare/v1.0.0...v1.1.0) (2021-11-16)
+
+
+### Features
+
+* add dependabot ([d62045c](https://github.com/brandoncanaday/brandon/commit/d62045c1990e200ca3637b97c5a6ef83b507125e))
+
 # 1.0.0 (2021-11-16)
 
 
