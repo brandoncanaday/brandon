@@ -112,5 +112,8 @@ jobs:
               uses: actions/download-artifact@v2
               with:
                   name: dist
+                  path: dist
+            - name: Print current directory contents
+              run: ls -al
             - name: Create Semantic GitHub Release
               run: yarn run release

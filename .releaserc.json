@@ -23,7 +23,7 @@
                 "assets": [
                     {
                         "path": "dist",
-                        "label": "Configurable EJS React app bundle"
+                        "label": "React app build output. The index.ejs file must still be compiled with an environment configuration before deployment."
                     }
                 ]
             }
