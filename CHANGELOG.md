@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/brandoncanaday/brandon/compare/v1.1.0...v1.1.1) (2021-11-18)
+
+
+### Bug Fixes
+
+* change build artifact to be a .tar.gz compressed file ([824d1c3](https://github.com/brandoncanaday/brandon/commit/824d1c30986b79850645a764e1684b7dcbf0cab1))
+* test new release trigger ([9a01da6](https://github.com/brandoncanaday/brandon/commit/9a01da6ec4821abbb753ad33b0026a7649bf5281))
+
 # [1.1.0](https://github.com/brandoncanaday/brandon/compare/v1.0.0...v1.1.0) (2021-11-16)
 
 
