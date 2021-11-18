@@ -2,8 +2,7 @@ name: CD
 
 on:
     release:
-        types:
-            - published
+        types: [published]
 
 env:
     DEPLOY_URL_PROD: https://me.nodnarb.dev
@@ -18,12 +17,14 @@ jobs:
             name: production
             url: ${{ env.DEPLOY_URL_PROD }}
         steps:
-            - name: Download Release Asset
+            - name: Download Release Artifact
               uses: dsaltares/fetch-gh-release-asset@v0.06
               with:
                   file: 'dist.tar.gz'
                   target: 'dist.tar.gz'
                   token: ${{ github.token }}
+            - name: Extract Release Artifact
+              run: tar -xzf dist.tar.gz
             - name: Echo secrets
               env:
                   SECRETS: ${{ toJson(secrets) }}
