@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/brandoncanaday/brandon/compare/v1.1.1...v1.1.2) (2021-11-18)
+
+
+### Bug Fixes
+
+* test new release trigger again ([00b2501](https://github.com/brandoncanaday/brandon/commit/00b250167735aa9a65f01eb01dadc28bcd44364c))
+
 ## [1.1.1](https://github.com/brandoncanaday/brandon/compare/v1.1.0...v1.1.1) (2021-11-18)
 
 
