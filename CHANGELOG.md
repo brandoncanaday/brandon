@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/brandoncanaday/brandon/compare/v1.1.2...v1.1.3) (2021-11-20)
+
+
+### Bug Fixes
+
+* change release trigger to on created instead of published ([3128566](https://github.com/brandoncanaday/brandon/commit/312856601c4d34f364fa3e5dbd56a8394024e989))
+
 ## [1.1.2](https://github.com/brandoncanaday/brandon/compare/v1.1.1...v1.1.2) (2021-11-18)
 
 
