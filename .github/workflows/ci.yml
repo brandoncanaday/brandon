@@ -85,7 +85,7 @@ jobs:
                   name: coverage.tar.gz
                   path: coverage.tar.gz
             - name: Generate Code Coverage Summary Report
-              uses: irongut/CodeCoverageSummary@v1.0.2
+              uses: irongut/CodeCoverageSummary@v1.2.0
               with:
                   filename: coverage/cobertura-coverage.xml
                   badge: true
