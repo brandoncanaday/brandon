@@ -17,7 +17,7 @@ jobs:
             - name: Checkout Code
               uses: actions/checkout@v2
             - name: Setup Node, Yarn, and NPM
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v3
               with:
                   node-version: '16'
                   cache: 'yarn'
@@ -37,7 +37,7 @@ jobs:
             - name: Checkout Code
               uses: actions/checkout@v2
             - name: Setup Node, Yarn, and NPM
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v3
               with:
                   node-version: '16'
                   cache: 'yarn'
@@ -64,7 +64,7 @@ jobs:
             - name: Checkout Code
               uses: actions/checkout@v2
             - name: Setup Node, Yarn, and NPM
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v3
               with:
                   node-version: '16'
                   cache: 'yarn'
@@ -106,7 +106,7 @@ jobs:
             - name: Checkout Code
               uses: actions/checkout@v2
             - name: Setup Node, Yarn, and NPM
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v3
               with:
                   node-version: '16'
                   cache: 'yarn'
