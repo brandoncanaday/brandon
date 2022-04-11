@@ -53,7 +53,7 @@ jobs:
             - name: Compress Build Artifact
               run: tar -zcvf dist.tar.gz dist
             - name: Upload Build Artifact
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v3
               with:
                   name: dist.tar.gz
                   path: dist.tar.gz
@@ -80,7 +80,7 @@ jobs:
             - name: Compress Test Artifact
               run: tar -zcvf coverage.tar.gz coverage
             - name: Upload Test Artifact
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v3
               with:
                   name: coverage.tar.gz
                   path: coverage.tar.gz
