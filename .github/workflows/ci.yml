@@ -113,7 +113,7 @@ jobs:
             - name: Install Dependencies
               run: yarn
             - name: Download Build Artifact
-              uses: actions/download-artifact@v2
+              uses: actions/download-artifact@v3
               with:
                   name: dist.tar.gz
                   path: dist.tar.gz
