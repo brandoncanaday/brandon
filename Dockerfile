@@ -2,7 +2,7 @@ ARG PROJECT_NAME
 
 # setup base image
 
-FROM node:16 AS base
+FROM node:18 AS base
 
 ARG PROJECT_NAME
 ENV PROJECT_HOME /projects/${PROJECT_NAME}
